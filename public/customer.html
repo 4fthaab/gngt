@@ -26,7 +26,7 @@
         <!-- Wrapper for logo and title -->
         <div id="logo-container" style="display: flex; align-items: center; gap: 10px; transition: all 0.5s ease;">
             <a href="javascript:void(0);" onclick="scrollToTop()">
-                <img src="/static/images/logo.png" alt="Project Logo"
+                <img src="static/images/logo.png" alt="Project Logo"
                     style="height: 50px; border-radius: 50%; transition: all 0.5s ease;">
             </a>
             <h2 id="project-name" style="font-family: 'Poppins', sans-serif; color: rgb(255, 255, 255); font-size: 24px;
@@ -43,7 +43,8 @@
             <button class="headerbuttons" onclick="scrollToSection('shopping-list')">Shopping Cart</button>
             <button class="headerbuttons" onclick="scrollToSection('offers-container')">Explore Special Offers</button>
             <button class="headerbuttons" onclick="scrollToSection('reviews')">Feedback</button>
-            <button class="headerbuttons" id="logoutButton" onclick="window.location.href='./index.html'">Logout</button>
+            <button class="headerbuttons" id="logoutButton"
+                onclick="window.location.href='./index.html'">Logout</button>
         </div>
     </header>
     <br><br><br>
@@ -94,7 +95,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="loadListModalLabel">Saved Shopping Lists</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: 0px;"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="margin-left: 0px;"></button>
                 </div>
                 <div class="modal-body" id="loadListModalBody">
                     <!-- Lists will be dynamically inserted here -->
