@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - GRAB & GO</title>
+    <link rel="stylesheet" href="static/css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+
+<body>
+    <header id="main-header" style="display: flex; justify-content: center; align-items: center; 
+    position: fixed; top: 0; left: 0; width: 100%; 
+    z-index: 1000; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.5s ease;">
+
+        <!-- Wrapper for logo and title -->
+        <div id="logo-container" style="display: flex; align-items: center; gap: 10px; transition: all 0.5s ease;">
+            <a href="javascript:void(0);" onclick="scrollToTop()">
+                <img src="../static/images/logo.png" alt="Project Logo"
+                    style="height: 50px; border-radius: 50%; transition: all 0.5s ease;">
+            </a>
+            <h2 id="project-name" style="font-family: 'Poppins', sans-serif; color: rgb(255, 255, 255); font-size: 24px;
+        font-weight: bold; transition: all 0.5s ease;">
+                GRAB & GO
+            </h2>
+        </div>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<h3 id="admin-title">WELCOME TO GRAB & GO ADMIN PANEL</h3> &nbsp; &nbsp; &nbsp; &nbsp;
+        <div id="button-container">
+            <button class="headerbuttons" onclick="scrollToTop()">Home</button>
+            <button class="headerbuttons" onclick="scrollToSection('database-container')">Manage Database</button>
+            <button class="headerbuttons" onclick="scrollToSection('offers-container')">Manage Offers</button>
+            <button class="headerbuttons" onclick="scrollToSection('reviews-container')">Explore User Feedbacks</button>
+            <button class="headerbuttons" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <br><br><br><br>
+    <h1 style="color: aliceblue;">WELCOME TO GRAB & GO ADMIN PANEL</h1>
+    <div class="database-container" id="database-container">
+        <h2>MANAGE SUPERMARKET DATABASE</h2>
+        <button onclick="toggleSection('insert')">Insert New Item</button>
+        <button onclick="toggleSection('update')">Update Item</button>
+        <button onclick="toggleSection('delete')">Delete Item</button>
+
+        <div id="insert-section" class="hidden">
+            <h3>Insert New Item</h3>
+            <input type="text" id="insert-name" placeholder="Item Name">
+            <input type="number" id="insert-mrp" placeholder="MRP">
+            <input type="number" id="insert-sale" placeholder="Sale Price">
+            <input type="text" id="insert-location" placeholder="Location">
+            <input type="text" id="insert-image" placeholder="Image URL">
+            <button onclick="insertItem()">Insert</button>
+        </div>
+
+        <div id="update-section" class="hidden">
+            <h3>Update Item</h3>
+            <input type="text" id="update-name" placeholder="Search Item"
+                oninput="fetchSuggestions(this.value, 'update'); if (!this.value.trim()) clearSectionInputs('update');">
+            <div id="update-suggestions" class="suggestion-box"></div>
+            <input type="number" id="update-mrp" placeholder="MRP">
+            <input type="number" id="update-sale" placeholder="Sale Price">
+            <input type="text" id="update-location" placeholder="Location">
+            <input type="text" id="update-image" placeholder="Image URL">
+            <button onclick="updateItem()">Update</button>
+        </div>
+        <div id="delete-section" class="hidden">
+            <h3>Delete Item</h3>
+            <input type="text" id="delete-name" placeholder="Search Item"
+                oninput="fetchSuggestions(this.value, 'delete'); if (!this.value.trim()) clearSectionInputs('delete');">
+            <div id="delete-suggestions" class="suggestion-box"></div>
+
+            <!-- Uneditable Item Details -->
+            <input type="number" id="delete-mrp" placeholder="MRP" readonly>
+            <input type="number" id="delete-sale" placeholder="Sale Price" readonly>
+            <input type="text" id="delete-location" placeholder="Location" readonly>
+            <input type="text" id="delete-image" placeholder="Image URL" readonly>
+
+            <button onclick="deleteItem()">Delete</button>
+        </div>
+    </div>
+    <div class="offers-container" id="offers-container">
+        <h2>MANAGE OFFERS</h2>
+
+        <button onclick="toggleSection('insert-offer')">Insert Offer</button>
+        <button onclick="toggleSection('delete-offer')">Delete Offer</button>
+
+        <!-- Insert Offer Section -->
+        <div id="insert-offer-section" class="hidden">
+            <h3>Insert Offer</h3>
+            <input type="text" id="offer-name" placeholder="Search Item" oninput="fetchOfferSuggestions(this.value)">
+            <div id="offer-suggestions" class="suggestion-box"></div>
+            <input type="number" id="offer-oldsale" placeholder="Old Sale Price" readonly>
+            <input type="number" id="offer-newsale" placeholder="New Sale Price">
+            <button onclick="insertOffer()">Insert Offer</button>
+        </div>
+
+        <!-- Delete Offer Section -->
+        <div id="delete-offer-section" class="hidden">
+            <h3>Delete Offer</h3>
+            <input type="text" id="delete-offer-name" placeholder="Search Offer"
+                oninput="fetchOfferDeleteSuggestions(this.value); if (!this.value.trim()) clearSectionInputs('delete-offer');">
+            <div id="delete-offer-suggestions" class="suggestion-box"></div>
+            <input type="number" id="delete-new-saleprice" placeholder="New Sale Price" readonly>
+            <button onclick="deleteOffer()">Delete Offer</button>
+        </div>
+    </div>
+    <div class="reviews-container" id="reviews-container">
+        <div id="reviews" class="content-section active">
+            <div class="stats-header">
+                <h1>CUSTOMER REVIEWS</h1>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search reviews...">
+                </div>
+            </div>
+            <div class="review-grid"></div> <!-- Added review grid container -->
+        </div>
+    </div>
+    <script src="static/js/admin.js"></script>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        window.addEventListener("scroll", function () {
+            const header = document.getElementById("main-header");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled"); // Shrinks header & buttons
+            } else {
+                header.classList.remove("scrolled"); // Reset sizes
+            }
+        });
+    </script>
+</body>
+
+</html>

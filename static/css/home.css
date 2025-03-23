@@ -1,0 +1,595 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #000000, #15252d, #394b59, #26292c, #2a2a2a);
+}
+
+header {
+    height: 60px;
+    background: linear-gradient(135deg, #2a2a2a, #26292c, #394b59, #15252d, #000000);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    height: 50px;
+    margin-left: 10px;
+}
+.scrolled #main-header {
+    height: 30px; /* Smaller height after scrolling */
+}
+
+/* Reduce Logo Size */
+.scrolled #logo-container img {
+    height: 30px; /* Shrink logo */
+}
+
+/* Adjust Title Size */
+.scrolled #project-name {
+    margin-top: 8px;
+    font-size: 20px; /* Reduce font size */
+}
+
+/* Adjust positioning to align properly */
+.scrolled #logo-container {
+    transform: scale(0.8) translateX(0); /* Slightly shrink */
+}
+
+.headerbuttons {
+    background-color: #2a94a7;;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Reduced padding */
+    margin-right: 5px; /* Adjusted margin */
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+/* Shrink buttons when scrolled */
+.scrolled .headerbuttons {
+    padding: 5px 12px; /* Smaller padding when scrolled */
+    font-size: 14px; /* Reduce font size */
+}
+
+.headerbuttons:hover {
+    background-color: #030518;
+    transform: translateY(-2px);
+}
+
+/* Map Container */
+#map-container {
+    background-image: url(../images/minimap.png);
+    width: 98%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    padding-bottom: 100px;
+    padding-left: 60px;
+    padding-right: 60px;
+    background-size:98%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#map-container h2 {
+    font-family:'poppins',sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Search Container */
+#search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#search-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease;
+}
+
+#search-box:focus {
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+    border-color: #2a94a7;;
+    outline: none;
+}
+
+#search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #2a94a7;;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#search-button:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+.suggestions-box {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 1100;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.suggestions-box div {
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.suggestions-box div:hover {
+    background-color: #f1f1f1;
+}
+
+/* Racks and Compartments */
+.rack {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 5px;
+}
+
+.rack div {
+    width: 48px;
+    height: 60px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #747070;
+    background-color: (247,247,247,0.7);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rack div.highlight {
+    background-color: #FFEB3B !important;
+    border-color: #FBC02D;
+    font-weight: bold;
+    color: #333;
+    transform: scale(1.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #7f7b7b;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 100px;
+}
+
+.popup img {
+    display: block;
+    width: 90px;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.popup span {
+    font-size: 10px; /* Bigger text */
+    font-weight: bold;
+    color: black;
+}
+
+
+/* Offers and Shopping List Container */
+#offers-cart-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+#offers-container {
+    width: 55%;
+    max-height: 600px;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #e6ebf0, #d4dde4, #b3c2d1, #9fb5c3, #8299a3);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.offer {
+    background-color: white;
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+}
+
+.offer:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.offer img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.offer button {
+    background-color: #2a94a7;;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.offer button:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+#quantity-dialog {
+    position: fixed;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent */
+    backdrop-filter: blur(10px); /* Glassmorphism */
+    padding: 25px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    z-index: 1000;
+    text-align: center;
+    width: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dialog-box h3 {
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif; /* Sleek modern font */
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.quantity-controls button {
+    background: linear-gradient(135deg, #2cd358, #1fa64b);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.quantity-controls button:hover {
+    background: linear-gradient(135deg, #1fa64b, #179c40);
+    transform: scale(1.1);
+}
+
+.dialog-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.dialog-buttons button {
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.dialog-buttons button:first-child {
+    background: linear-gradient(135deg, #00c853, #009624);
+    color: white;
+}
+
+.dialog-buttons button:last-child {
+    background: linear-gradient(135deg, #d50000, #9b0000);
+    color: white;
+}
+
+.dialog-buttons button:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+/* Shopping List Section */
+#shopping-list {
+    width: 50%;
+    min-height: 200px;
+    max-height: 600px;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #e6ebf0, #d4dde4, #b3c2d1, #9fb5c3, #8299a3);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#shopping-list h2, #offers-container h2 {
+    font-family: 'poppins',sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#shopping-list-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease;
+}
+
+#shopping-list-input:focus {
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+    border-color: #2a94a7;;
+    outline: none;
+}
+
+#shopping-list-items {
+    list-style-type: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+#shopping-list-items li {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+#shopping-list-items li:hover {
+    background-color: #f9f9f9;
+}
+
+.searchsuggestions-box {
+    width: 99%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 1100;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.searchsuggestions-box div {
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.searchsuggestions-box div:hover {
+    background-color: #f1f1f1;
+}
+
+#checkout-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#checkout-section button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bolder;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#checkout-button {
+    background-color: #2a94a7;;
+    color: white;
+}
+
+#checkout-button:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+#clear-cart-button {
+    background-color: #F44336;
+    color: white;
+}
+
+#clear-cart-button:hover {
+    background-color: #D32F2F;
+    transform: translateY(-2px);
+}
+
+#total-amount-container {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.modal-buttons button {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#print-bill-button {
+    background-color: #2a94a7;;
+    color: white;
+}
+
+#print-bill-button:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+#back-to-cart-button {
+    background-color: #F44336;
+    color: white;
+}
+
+#back-to-cart-button:hover {
+    background-color: #D32F2F;
+    transform: translateY(-2px);
+}
+
+@keyframes focusGlow {
+    0% { box-shadow: 0 0 5px rgb(255, 255, 255); }
+    50% { box-shadow: 0 0 15px rgba(215, 122, 122, 0.9); }
+    100% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.6); }
+}
+
+.focus-highlight {
+    border: 3px solid #223622;
+    animation: focusGlow 1s ease-in-out 3;
+    border-radius: 12px;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.delete-btn:hover {
+    color: darkred;
+}

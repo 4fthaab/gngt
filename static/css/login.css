@@ -1,0 +1,71 @@
+body {
+    background: linear-gradient(45deg, #34434f, #172329, #000000, #172329, #34434f);
+    background-size: 400% 400%;
+    animation: gradientShift 5s infinite linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.login-container {
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+#logo-container img {
+    height: 80px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+}
+
+#logo-container img:hover {
+    transform: scale(1.1);
+}
+
+h1, h5 {
+    color: #ffffff;
+}
+
+.login-btn {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+    align-self: center;
+}
+
+.login-btn:hover {
+    background-color: #357ae8;
+    transform: scale(1.05);
+}
+
+#googleLogin img {
+    width: 24px;
+    height: 24px;
+}

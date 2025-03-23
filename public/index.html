@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>Grab N Go</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script type="module" src="../static/js/home.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <header id="main-header" style="display: flex; justify-content: center; align-items: center; 
+        position: fixed; top: 0; left: 0; width: 100%; 
+        z-index: 1000; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.5s ease;">
+
+        <!-- Wrapper for logo and title -->
+        <div id="logo-container" style="display: flex; align-items: center; gap: 10px; transition: all 0.5s ease;">
+            <a href="javascript:void(0);" onclick="scrollToTop()">
+                <img src="../static/images/logo.png" alt="Project Logo"
+                    style="height: 50px; border-radius: 50%; transition: all 0.5s ease;">
+            </a>
+            <h2 id="project-name" style="font-family: 'Poppins', sans-serif; color: rgb(255, 255, 255); font-size: 24px;
+            font-weight: bold; transition: all 0.5s ease; margin-top: 6px;">
+                GRAB & GO
+            </h2>
+        </div>
+        <div id="button-container" style="margin-left: auto;">
+            <button class="headerbuttons" onclick="scrollToTop()">Home</button>
+            <button class="headerbuttons" onclick="window.location.href='./login.html'">Login</button>
+            <button class="headerbuttons" onclick="scrollToSection('shopping-list')">Shopping Cart</button>
+            <button class="headerbuttons" onclick="scrollToSection('offers-container')">Explore Special Offers</button>
+            <button class="headerbuttons" onclick="checkLoginBeforeFeedback()">Feedback</button>
+        </div>
+    </header>
+    <br><br><br>
+    <div id="map-container">
+        <h2>SEARCH ITEMS</h2>
+        <div id="search-container">
+            <input type="text" id="search-box" placeholder="Search for an item...">
+            <div id="suggestions" class="suggestions-box"></div>
+            <button id="search-button">Search</button>
+        </div>
+        <div id="map">
+            <!-- Racks will be dynamically generated -->
+        </div>
+    </div>
+    <div id="offers-cart-container">
+        <div id="offers-container">
+            <h2>EXPLORE THE TRENDING OFFERS</h2>
+            <div class="offers-grid">
+                <!-- Offers will be dynamically loaded here -->
+            </div>
+        </div>
+        <div id="shopping-list">
+            <h2>SHOPPING CART</h2>
+            <div class="search-container">
+                <div id="budget-container">
+                    <label for="budget-input">Enter Budget (₹):</label>
+                    <input type="number" id="budget-input" placeholder="Enter your budget"
+                        style="width: 79%; border-radius: 5px; height:40px">
+                </div>
+                <br>
+                <input type="text" id="shopping-list-input" placeholder="Type an item..." style="width: 99%;">
+                <div id="searchSuggestions-box" class=".searchSuggestions-box"></div>
+            </div>
+            <ul id="shopping-list-items"></ul>
+            <div id="checkout-section" style="gap: 40px;">
+                <button id="checkout-button">Checkout</button>
+                <button id="clear-cart-button">Clear Cart</button>
+                <div id="total-amount-container">Total Amount: ₹0</div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Sorted Shopping List</h2>
+            <div id="sorted-list-container"></div>
+            <div class="modal-buttons">
+                <button id="print-bill-button">Print List</button>
+                <button id="back-to-cart-button">Back to Cart</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <P></P>
+        <p></p>
+    </footer>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        window.addEventListener("scroll", function () {
+            const header = document.getElementById("main-header");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled"); // Shrinks header & buttons
+            } else {
+                header.classList.remove("scrolled"); // Reset sizes
+            }
+        });
+    </script>
+</body>
