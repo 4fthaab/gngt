@@ -593,3 +593,40 @@ header img {
 .delete-btn:hover {
     color: darkred;
 }
+
+@media screen and (max-width: 768px) {
+    /* Reduce rack width for better fit on mobile */
+    .rack-container {
+        width: 90%; /* Adjust as needed */
+        margin: auto;
+    }
+
+    /* Remove background image on mobile */
+    body {
+        background: #15252d; /* Replace gradient with solid color */
+    }
+
+    /* Adjust grid layout to ensure it doesn’t overflow */
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Reduce font size if needed */
+    .headerbuttons {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    /* Ensure the search bar fits properly */
+    .search-container {
+        width: 100%;
+    }
+
+    /* Adjust shopping cart and trending offers */
+    .shopping-cart, .trending-offers {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
